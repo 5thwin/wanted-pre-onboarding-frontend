@@ -14,6 +14,7 @@ const withAuthRedirect = <P extends object>(
 
     useEffect(() => {
       const token = localStorage.getItem('token');
+      /*토큰이 있는 상태일 때, /todo 경로로 리다이렉트 */
       if (token) {
         navigate('/todo');
       } else if (location.pathname === '/todo') {
