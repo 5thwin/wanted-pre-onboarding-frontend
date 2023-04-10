@@ -25,3 +25,10 @@ code {
 	background-color: #f5efe6; /* 배경 색상 */
 	height: 100%; /* 부모 요소의 높이를 100%로 설정 */
 }
+
+.sign-label {
+	@apply w-14 h-full bg-beige rounded-l-md flex justify-center items-center;
+}
+.sign-input {
+	@apply p-4 rounded-r-md w-full h-full bg-slate-50 hover:bg-white focus:bg-white;
+}

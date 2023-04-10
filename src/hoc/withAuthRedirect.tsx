@@ -18,6 +18,7 @@ const withAuthRedirect = <P extends object>(
       if (token) {
         navigate('/todo');
       } else if (location.pathname === '/todo') {
+        /*토큰이 없는 상태에서 /todo 페이지 접속 시 /signin 경로로 리다이렉트 */
         navigate('/signin');
       }
     }, [navigate, location.pathname]);

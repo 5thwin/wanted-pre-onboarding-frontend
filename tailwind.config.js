@@ -9,7 +9,8 @@ module.exports = {
         primary: "#7895B2",
         secondary: '#AEBDCA',
         background: '#F5EFE6',
-        beige: '#E8DFCA'
+        beige: '#E8DFCA',
+        anchor: '#5865CF'
       }
     },
   },
