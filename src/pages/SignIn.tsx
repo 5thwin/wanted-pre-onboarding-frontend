@@ -1,21 +1,9 @@
 import { Link } from 'react-router-dom';
 import { FaUser, FaLock } from 'react-icons/fa';
-import { useCallback, useState } from 'react';
+import { useSign } from '../hooks/useSign';
 
 export default function SignInForm() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [isValid, setIsValid] = useState(false);
-
-  const handleEmailChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(event.target.value);
-    setIsValid(email.includes('@') && password.length >= 8);
-  }, [email, password.length]);
-
-  const handlePasswordChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(event.target.value);
-    setIsValid(email.includes('@') && password.length >= 8);
-  }, [email, password.length]);
+  const { isValid, handleChange } = useSign();
 
   return <div className='pt-56 flex flex-col justify-center items-center'>
     <form className='my-4 p-3 w-1/2 max-w-sm text-md'>
@@ -26,9 +14,10 @@ export default function SignInForm() {
         <input
           data-testid="email-input"
           id='email-input'
+          name='email'
           className='sign-input'
           placeholder='Email address'
-          onChange={handleEmailChange}
+          onChange={handleChange}
         />
       </div>
       <div className='flex items-center h-14 mt-4'>
@@ -39,15 +28,16 @@ export default function SignInForm() {
           data-testid="password-input"
           id='password-input'
           type='password'
+          name='password'
           className='sign-input'
           placeholder='Password'
-          onChange={handlePasswordChange}
+          onChange={handleChange}
         />
       </div>
       <button
         data-testid="signin-button"
         type='submit'
-        className='mt-5 w-full bg-primary p-4 text-white font-bold rounded-md disabled:bg-gray-400'
+        className='sign-submit'
         disabled={!isValid}
       >SIGN IN</button>
     </form>
