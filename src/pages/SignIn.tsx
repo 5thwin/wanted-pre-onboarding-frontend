@@ -1,9 +1,15 @@
 import { Link } from 'react-router-dom';
 import { FaUser, FaLock } from 'react-icons/fa';
 import { useSign } from '../hooks/useSign';
+import { useCallback } from 'react';
 
 export default function SignInForm() {
-  const { isValid, handleChange } = useSign();
+  const { isValid, handleChange, signIn } = useSign();
+
+  const handleSubmitSignIn = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    signIn();
+  }, [signIn]);
 
   return <div className='pt-56 flex flex-col justify-center items-center'>
     <form className='my-4 p-3 w-1/2 max-w-sm text-md'>
@@ -38,6 +44,7 @@ export default function SignInForm() {
         data-testid="signin-button"
         type='submit'
         className='sign-submit'
+        onClick={handleSubmitSignIn}
         disabled={!isValid}
       >SIGN IN</button>
     </form>

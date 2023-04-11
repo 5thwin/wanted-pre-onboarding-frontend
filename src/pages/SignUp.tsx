@@ -1,9 +1,15 @@
 import { Link } from 'react-router-dom';
 import { FaUser, FaLock } from 'react-icons/fa';
 import { useSign } from '../hooks/useSign';
+import { useCallback } from 'react';
 
 export default function SignUpForm() {
-  const { isValid, handleChange } = useSign();
+  const { isValid, handleChange, signUp } = useSign();
+
+  const handleSubmitSignUp = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    signUp();
+  }, [signUp]);
 
   return <div className='pt-56 flex flex-col justify-center items-center'>
     <form className='my-4 p-3 w-1/2 max-w-sm text-md'>
@@ -39,6 +45,7 @@ export default function SignUpForm() {
         type='submit'
         className='sign-submit'
         disabled={!isValid}
+        onClick={handleSubmitSignUp}
       >SIGN UP</button>
     </form>
     <p className='font-semibold text-secondary'>Already exist account? <Link to={'/signin'} className="text-anchor hover:underline">Sign in now</Link></p>
