@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
-import { getTodos } from 'src/api/todo';
+import { createTodo, deleteTodo, getTodos, updateTodo } from 'src/api/todo';
 import { Todo } from 'src/constants';
+import { useNavigate } from 'react-router-dom';
 
 export default function useTodo() {
+	const navigate = useNavigate();
 	const [todos, setTodos] = useState<Todo[]>([]);
 	const [newTodo, setNewTodo] = useState<string>('');
 	const [error, setError] = useState<null | string>(null);
@@ -26,6 +28,60 @@ export default function useTodo() {
 			fetchTodos();
 		}
 	}, [accessToken]);
+	const handleNewTodoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setNewTodo(event.target.value);
+	};
+	/*새로운 todo 추가 핸들러 */
+	const handleNewTodoSubmit = async (
+		event: React.FormEvent<HTMLFormElement>
+	) => {
+		event.preventDefault();
+		try {
+			const todo = await createTodo(accessToken, { todo: newTodo });
+			setTodos((todos) => [...todos, todo]);
+			setNewTodo('');
+		} catch (error) {
+			setError('할 일을 추가하는데 실패하였습니다.');
+		}
+	};
 
-	return { todos };
+	const handleDeleteTodo = async (id: number) => {
+		try {
+			await deleteTodo(accessToken, id);
+			setTodos((todos) => todos.filter((todo) => todo.id !== id));
+		} catch (error) {
+			setError('할 일을 삭제하는 데 실패하였습니다.');
+		}
+	};
+
+	const handleUpdateTodo = async (updatedTodo: Todo) => {
+		try {
+			const todo = await updateTodo(accessToken, updatedTodo.id, {
+				todo: updatedTodo.todo,
+				isCompleted: updatedTodo.isCompleted,
+			});
+			setTodos((todos) =>
+				todos.map((todo) =>
+					todo.id === updatedTodo.id ? { ...todo, ...updatedTodo } : todo
+				)
+			);
+		} catch (error) {
+			setError('할 일을 수정하는 데 실패하였습니다.');
+		}
+	};
+
+	const handleLogout = () => {
+		localStorage.removeItem('token');
+		navigate('/signin');
+	};
+
+	return {
+		todos,
+		handleNewTodoChange,
+		handleNewTodoSubmit,
+		handleDeleteTodo,
+		handleUpdateTodo,
+		handleLogout,
+		error,
+	};
 }

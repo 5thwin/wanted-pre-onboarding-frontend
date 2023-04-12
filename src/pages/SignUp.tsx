@@ -4,12 +4,12 @@ import { useSign } from '../hooks/useSign';
 import { useCallback } from 'react';
 
 export default function SignUpForm() {
-  const { isValid, handleChange, signUp } = useSign();
+  const { isValid, handleChange, handleSignUp } = useSign();
 
   const handleSubmitSignUp = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    signUp();
-  }, [signUp]);
+    handleSignUp();
+  }, [handleSignUp]);
 
   return <div className='pt-56 flex flex-col justify-center items-center'>
     <form className='my-4 p-3 w-1/2 max-w-sm text-md'>
