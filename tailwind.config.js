@@ -10,6 +10,7 @@ module.exports = {
         secondary: '#AEBDCA',
         background: '#F5EFE6',
         beige: '#E8DFCA',
+        bright: "#88A4C2",
         anchor: '#5865CF'
       }
     },
