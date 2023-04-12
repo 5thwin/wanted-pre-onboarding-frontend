@@ -60,6 +60,7 @@ export default function useTodo() {
 				todo: updatedTodo.todo,
 				isCompleted: updatedTodo.isCompleted,
 			});
+			console.log(todo);
 			setTodos((todos) =>
 				todos.map((todo) =>
 					todo.id === updatedTodo.id ? { ...todo, ...updatedTodo } : todo

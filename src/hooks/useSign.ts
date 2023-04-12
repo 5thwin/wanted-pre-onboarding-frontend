@@ -1,7 +1,6 @@
 import { useCallback, useMemo, useState, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signIn, signUp } from '../api/auth';
-import { setItem } from '../utils/storage';
 import { useAuth } from './useAuth';
 
 export function useSign() {
