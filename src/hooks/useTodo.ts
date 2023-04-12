@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { createTodo, deleteTodo, getTodos, updateTodo } from 'src/api/todo';
-import { Todo } from 'src/constants';
+import { createTodo, deleteTodo, getTodos, updateTodo } from '../api/todo';
+import { Todo } from '../constants';
 import { useNavigate } from 'react-router-dom';
 
 export default function useTodo() {
@@ -37,6 +37,10 @@ export default function useTodo() {
 	) => {
 		event.preventDefault();
 		try {
+			if (!accessToken) {
+				setError('로그인을 해주세요');
+				return;
+			}
 			const todo = await createTodo(accessToken, { todo: newTodo });
 			setTodos((todos) => [...todos, todo]);
 			setNewTodo('');
@@ -47,6 +51,10 @@ export default function useTodo() {
 
 	const handleDeleteTodo = async (id: number) => {
 		try {
+			if (!accessToken) {
+				setError('로그인을 해주세요');
+				return;
+			}
 			await deleteTodo(accessToken, id);
 			setTodos((todos) => todos.filter((todo) => todo.id !== id));
 		} catch (error) {
@@ -56,6 +64,10 @@ export default function useTodo() {
 
 	const handleUpdateTodo = async (updatedTodo: Todo) => {
 		try {
+			if (!accessToken) {
+				setError('로그인을 해주세요');
+				return;
+			}
 			const todo = await updateTodo(accessToken, updatedTodo.id, {
 				todo: updatedTodo.todo,
 				isCompleted: updatedTodo.isCompleted,

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getItem, removeItem, setItem } from 'src/utils/storage';
+import { getItem, removeItem, setItem } from '../utils/storage';
 
 export const useAuth = () => {
 	const [accessToken, setAccessToken] = useState<string | null>(null);

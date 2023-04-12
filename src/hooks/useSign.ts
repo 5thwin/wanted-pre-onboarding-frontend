@@ -26,6 +26,7 @@ export function useSign() {
 			});
 			if (success) {
 				saveToken(access_token);
+				alert('환영합니다');
 				navigate('/todo');
 			} else {
 				setError(message);
