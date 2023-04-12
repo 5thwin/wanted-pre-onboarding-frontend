@@ -3,7 +3,7 @@ import withAuthRedirect from '../hoc/withAuthRedirect';
 import useTodo from '../hooks/useTodo';
 
 const TodoPage: FC = () => {
-  const { todos, handleNewTodoChange, handleNewTodoSubmit } = useTodo();
+  const { todos, handleNewTodoChange, handleNewTodoSubmit, handleDeleteTodo } = useTodo();
   return (
     <div className='pt-56 flex flex-col justify-center items-center'>
       <h1>Todo Page</h1>
@@ -16,7 +16,7 @@ const TodoPage: FC = () => {
           <input type="checkbox" checked={todo.isCompleted} />
           <span>{todo.todo}</span>
           <button data-testid="modify-button">수정</button>
-          <button data-testid="delete-button">삭제</button>
+          <button data-testid="delete-button" onClick={() => { handleDeleteTodo(todo.id) }}>삭제</button>
         </li>
       })}
     </div>
