@@ -1,10 +1,12 @@
-import axios from 'axios';
 import { useCallback, useMemo, useState, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { API_URL } from '../constants';
+import { signIn, signUp } from '../api/auth';
+import { setItem } from '../utils/storage';
+import { useAuth } from './useAuth';
 
 export function useSign() {
 	const navigate = useNavigate();
+	const { saveToken } = useAuth();
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [error, setError] = useState<null | string>(null);
@@ -17,40 +19,34 @@ export function useSign() {
 		return password.length >= 8;
 	}, []);
 
-	const signIn = useCallback(async () => {
+	const handleSignIn = async () => {
 		try {
-			const response = await axios.post(
-				`${API_URL}/auth/signin`,
-				{ email, password },
-				{ headers: { 'Content-Type': 'application/json' } }
-			);
-			const { access_token } = response.data;
-			console.log('access_token:', access_token);
-			localStorage.setItem('token', access_token);
-			navigate('/todo');
+			const { success, message, access_token } = await signIn({
+				email,
+				password,
+			});
+			if (success) {
+				saveToken(access_token);
+				navigate('/todo');
+			} else {
+				setError(message);
+			}
 		} catch (error) {
 			console.error(error);
 			setError('로그인에 실패하였습니다.');
 		}
-	}, [email, password]);
+	};
 
-	const signUp = async () => {
+	const handleSignUp = async () => {
 		try {
-			const response = await fetch(`${API_URL}/auth/signup`, {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({ email, password }),
-			});
-
-			if (response.status === 201) {
-				alert('회원가입에 성공하였습니다.');
+			const { success, message } = await signUp({ email, password });
+			if (success) {
 				navigate('/signin');
 			} else {
-				setError('회원가입에 실패하였습니다.');
+				setError(message);
 			}
 		} catch (error) {
+			console.error(error);
 			setError('회원가입에 실패하였습니다.');
 		}
 	};
@@ -72,5 +68,13 @@ export function useSign() {
 		[setEmail, setPassword]
 	);
 
-	return { email, password, isValid, handleChange, signIn, signUp, error };
+	return {
+		email,
+		password,
+		isValid,
+		handleChange,
+		handleSignIn,
+		handleSignUp,
+		error,
+	};
 }
