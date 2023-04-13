@@ -91,6 +91,7 @@ export default function useTodo() {
 
 	return {
 		todos,
+		newTodo,
 		handleNewTodoChange,
 		handleNewTodoSubmit,
 		handleDeleteTodo,
