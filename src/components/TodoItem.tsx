@@ -1,16 +1,15 @@
 import { Todo } from '../constants';
-import useTodo from '../hooks/useTodo';
 import { useState, useRef } from 'react';
 
 
 export interface TodoItemProps {
   todo: Todo;
   handleDelete: (id: number) => Promise<void>
+  handleUpdate: (updatedTodo: Todo) => Promise<void>
 }
 
 export default function TodoItem(props: TodoItemProps) {
-  const { todo, handleDelete } = props;
-  const { handleUpdateTodo } = useTodo();
+  const { todo, handleDelete, handleUpdate } = props;
   const inputRef = useRef<HTMLInputElement>(null);
   const [isEditMode, SetIsEditMode] = useState<boolean>(false);
   return <li className='flex w-full h-12 bg-bright my-2 p-3 items-center'>
@@ -25,9 +24,9 @@ export default function TodoItem(props: TodoItemProps) {
           </div>
         </div> :
         <form className='flex w-full justify-between'>
-          <input data-testid="modify-input" defaultValue={todo.todo} ref={inputRef} className='ml-2' />
+          <input data-testid="modify-input" defaultValue={todo.todo} ref={inputRef} className='ml-2 text-primary' />
           <div>
-            <button data-testid="submit-button" onClick={() => handleUpdateTodo({ ...todo, todo: inputRef.current ? inputRef.current.value : todo.todo })}>제출</button>
+            <button data-testid="submit-button" onClick={() => handleUpdate({ ...todo, todo: inputRef.current ? inputRef.current.value : todo.todo })}>제출</button>
             <button data-testid="cancel-button" onClick={() => SetIsEditMode(false)} className='ml-2'>취소</button>
           </div>
         </form>
