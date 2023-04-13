@@ -13,7 +13,12 @@ export default function TodoItem(props: TodoItemProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [isEditMode, SetIsEditMode] = useState<boolean>(false);
   return <li className='flex w-full h-12 bg-bright my-2 p-3 items-center'>
-    <input type="checkbox" defaultChecked={todo.isCompleted} id="todo-check" />
+    <input
+      type="checkbox"
+      defaultChecked={todo.isCompleted}
+      id="todo-check"
+      onChange={(event) => { handleUpdate({ ...todo, isCompleted: event.target.checked }) }}
+    />
     {
       !isEditMode ?
         <div className='flex w-full justify-between'>
