@@ -8,7 +8,6 @@ export function useSign() {
 	const { saveToken } = useAuth();
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-	const [error, setError] = useState<null | string>(null);
 
 	const validateEmail = useCallback((email: string) => {
 		return email.includes('@');
@@ -29,11 +28,11 @@ export function useSign() {
 				alert('환영합니다');
 				navigate('/todo');
 			} else {
-				setError(message);
+				alert(message);
 			}
 		} catch (error) {
 			console.error(error);
-			setError('로그인에 실패하였습니다.');
+			alert('로그인에 실패하였습니다.');
 		}
 	};
 
@@ -43,11 +42,11 @@ export function useSign() {
 			if (success) {
 				navigate('/signin');
 			} else {
-				setError(message);
+				alert(message);
 			}
 		} catch (error) {
 			console.error(error);
-			setError('회원가입에 실패하였습니다.');
+			alert('회원가입에 실패하였습니다.');
 		}
 	};
 
@@ -75,6 +74,5 @@ export function useSign() {
 		handleChange,
 		handleSignIn,
 		handleSignUp,
-		error,
 	};
 }

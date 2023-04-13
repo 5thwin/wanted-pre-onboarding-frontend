@@ -24,7 +24,7 @@ export default function TodoItem(props: TodoItemProps) {
           </div>
         </div> :
         <form className='flex w-full justify-between'>
-          <input data-testid="modify-input" defaultValue={todo.todo} ref={inputRef} className='ml-2 text-primary' />
+          <input data-testid="modify-input" defaultValue={todo.todo} ref={inputRef} className='ml-2 text-primary py-1' />
           <div>
             <button data-testid="submit-button" onClick={() => handleUpdate({ ...todo, todo: inputRef.current ? inputRef.current.value : todo.todo })}>제출</button>
             <button data-testid="cancel-button" onClick={() => SetIsEditMode(false)} className='ml-2'>취소</button>

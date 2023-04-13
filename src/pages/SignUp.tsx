@@ -6,9 +6,9 @@ import { useCallback } from 'react';
 export default function SignUpForm() {
   const { isValid, handleChange, handleSignUp } = useSign();
 
-  const handleSubmitSignUp = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleSubmitSignUp = useCallback(async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    handleSignUp();
+    await handleSignUp();
   }, [handleSignUp]);
 
   return <div className='pt-56 flex flex-col justify-center items-center'>
