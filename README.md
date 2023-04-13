@@ -20,9 +20,19 @@ https://wanted-pre-onboarding-frontend-mu-two.vercel.app/
 | 메인화면         | Go를 눌러서 시작합니다.                                                    |
 | 로그인               | 이메일, 패스워드를 입력하여 로그인합니다.                                                        |
 | 회원가입 | 이메일, 패스워드를 입력하여 회원가입합니다.                                     |
+
 https://user-images.githubusercontent.com/52368089/231653493-beaedc4d-91b0-42d1-8bda-6cdee807d5d3.mov
 
 ### Todo 추가, 수정 및 삭제
+
+| 기능       | 설명                                                          |
+| --------- | -------------------------------------------------------------|
+| Todo List | Todo 목록을 출력합니다.                                           |
+| Todo 추가  | 새로운 Todo를 추가합니다.                                         |
+| Todo 수정  | Todo의 내용을 변경하거나, 완료상태를 수정합니다.                        |
+| Todo 삭제  | Todo를 삭제합니다.                                               |
+
+
 https://user-images.githubusercontent.com/52368089/231653603-c937fb76-5ebe-4ecb-bdfd-d578ed29df70.mov
 
 
