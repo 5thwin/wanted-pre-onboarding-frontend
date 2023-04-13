@@ -2,8 +2,9 @@ import { Link } from 'react-router-dom';
 import { FaUser, FaLock } from 'react-icons/fa';
 import { useSign } from '../hooks/useSign';
 import { useCallback } from 'react';
+import withAuthRedirect from '../hoc/withAuthRedirect';
 
-export default function SignUpForm() {
+function SignUpForm() {
   const { isValid, handleChange, handleSignUp } = useSign();
 
   const handleSubmitSignUp = useCallback(async (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -51,3 +52,5 @@ export default function SignUpForm() {
     <p className='font-semibold text-secondary'>Already exist account? <Link to={'/signin'} className="text-anchor hover:underline">Sign in now</Link></p>
   </div>;
 }
+
+export default withAuthRedirect(SignUpForm);

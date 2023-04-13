@@ -2,20 +2,16 @@ import { ComponentType, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { getItem } from '../utils/storage';
 
-export interface AuthRedirectProps {
-  isAuth: boolean;
-}
-
 const withAuthRedirect = <P extends object>(
   WrappedComponent: ComponentType<P>,
-): ComponentType<P & AuthRedirectProps> => {
-  const AuthRedirect: ComponentType<P & AuthRedirectProps> = (props) => {
+): ComponentType<P> => {
+  const AuthRedirect: ComponentType<P> = (props) => {
     const navigate = useNavigate();
     const location = useLocation();
 
     useEffect(() => {
       /*토큰이 있는 상태일 때, /todo 경로로 리다이렉트 */
-      const token = getItem('token'); /*useAuth를 사용해서 토큰을 가져올 수 있는 방법 찾는중*/
+      const token = getItem('token');
 
       if (token) {
         navigate('/todo');
@@ -25,7 +21,7 @@ const withAuthRedirect = <P extends object>(
       }
     }, [navigate, location.pathname]);
 
-    return props.isAuth ? <WrappedComponent {...(props as P)} /> : null;
+    return <WrappedComponent {...(props as P)} />;
   };
 
   return AuthRedirect;

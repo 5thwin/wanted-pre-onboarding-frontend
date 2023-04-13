@@ -11,7 +11,7 @@ export default function App() {
       <div className="container mx-auto bg-transparent">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/todo" element={<Todo isAuth={true} />} />
+          <Route path="/todo" element={<Todo />} />
           <Route path="/signin" element={<SignInForm />} />
           <Route path="/signup" element={<SignUpForm />} />
           <Route path="*" element={<NotFound />} />
