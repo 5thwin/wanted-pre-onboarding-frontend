@@ -5,7 +5,7 @@ import useTodo from '../hooks/useTodo';
 import AddTodoForm from '../components/AddTodoForm';
 
 const TodoPage: FC = () => {
-  const { todos, newTodo, handleNewTodoChange, handleNewTodoSubmit } = useTodo();
+  const { todos, newTodo, handleNewTodoChange, handleNewTodoSubmit, handleDeleteTodo } = useTodo();
   return (
     <div className='pt-36 flex flex-col justify-center items-center text-white'>
       <div className='bg-primary p-12 w-full max-w-xl'>
@@ -16,7 +16,7 @@ const TodoPage: FC = () => {
           handleSubmit={handleNewTodoSubmit}
           handleChange={handleNewTodoChange} />
         {todos.map((todo) => {
-          return <TodoItem todo={todo} />
+          return <TodoItem todo={todo} handleDelete={handleDeleteTodo} />
         })}
       </div>
     </div>

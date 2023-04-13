@@ -5,10 +5,12 @@ import { useState, useRef } from 'react';
 
 export interface TodoItemProps {
   todo: Todo;
+  handleDelete: (id: number) => Promise<void>
 }
 
-export default function TodoItem({ todo }: TodoItemProps) {
-  const { handleDeleteTodo, handleUpdateTodo } = useTodo();
+export default function TodoItem(props: TodoItemProps) {
+  const { todo, handleDelete } = props;
+  const { handleUpdateTodo } = useTodo();
   const inputRef = useRef<HTMLInputElement>(null);
   const [isEditMode, SetIsEditMode] = useState<boolean>(false);
   return <li className='flex w-full h-12 bg-bright my-2 p-3 items-center'>
@@ -19,7 +21,7 @@ export default function TodoItem({ todo }: TodoItemProps) {
           <span className='ml-2'>{todo.todo}</span>
           <div>
             <button data-testid="modify-button" className='' onClick={() => SetIsEditMode(true)}>수정</button>
-            <button data-testid="delete-button" className='ml-2' onClick={() => { handleDeleteTodo(todo.id) }}>삭제</button>
+            <button data-testid="delete-button" className='ml-2' onClick={() => { handleDelete(todo.id) }}>삭제</button>
           </div>
         </div> :
         <form className='flex w-full justify-between'>
