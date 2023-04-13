@@ -1,45 +1,30 @@
-# Getting Started with Create React App
+# 원티드 프리온보딩 인턴쉽 프론트엔드 사전과제
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
+## 실행방법
 
 In the project directory, you can run:
 
-### `npm start`
+```
+npm install
+npm start
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 배포 주소
+https://wanted-pre-onboarding-frontend-mu-two.vercel.app/
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 기능
 
-### `npm test`
+### 회원가입 및 로그인
+| 기능             | 설명                                                                                       |
+| ---------------- | ------------------------------------------------------------------------------------------ |
+| 메인화면         | Go를 눌러서 시작합니다.                                                    |
+| 로그인               | 이메일, 패스워드를 입력하여 로그인합니다.                                                        |
+| 회원가입 | 이메일, 패스워드를 입력하여 회원가입합니다.                                     |
+https://user-images.githubusercontent.com/52368089/231653493-beaedc4d-91b0-42d1-8bda-6cdee807d5d3.mov
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Todo 추가, 수정 및 삭제
+https://user-images.githubusercontent.com/52368089/231653603-c937fb76-5ebe-4ecb-bdfd-d578ed29df70.mov
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
